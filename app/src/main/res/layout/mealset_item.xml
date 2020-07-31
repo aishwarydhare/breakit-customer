@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="onItemClicked"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="foodItem"
+            type="com.breakit.customer.model.FoodItem" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{onItemClicked}"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:scaleType="fitXY"
+            app:imageUrl="@{foodItem.image}" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="8dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="00dp"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:text="@{foodItem.name}"
+                android:textSize="16dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="00dp"
+                android:layout_weight="1"
+                android:layout_marginTop="8dp"
+                android:text="@{foodItem.restaurant.name}" />
+        </LinearLayout>
+    </LinearLayout>
+
+</layout>

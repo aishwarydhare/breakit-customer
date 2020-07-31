@@ -1,0 +1,21 @@
+{
+  "meta": {
+    "status": 1000,
+    "is_error": false,
+    "message": ""
+  },
+  "data": {
+    "customer_id": 1,
+    "user_id": 1,
+    "company_name": "company pvt ltd",
+    "mobile": "9900990099",
+    "email": "sample@email.com",
+    "first_name": "john",
+    "support_email": "other@email.com",
+    "support_mobile": "+918800880088",
+    "gst_number": "GST12345",
+    "adhaar_card": "AADHAR12345",
+    "pan_card": "PAN12345",
+    "billing_email": "another@email.com"
+  }
+}

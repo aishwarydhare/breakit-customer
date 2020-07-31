@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "1097631994413",
+    "firebase_url": "https://breakit-2fce1.firebaseio.com",
+    "project_id": "breakit-2fce1",
+    "storage_bucket": "breakit-2fce1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1097631994413:android:4a64ca6698cfbfb8399ea4",
+        "android_client_info": {
+          "package_name": "com.breakit.customer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1097631994413-tj84dc1q8draqto5nc26mhf30grpkf8f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdtv2lxmw0LwvvnKEWLtpflturWVY15rs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1097631994413-tj84dc1q8draqto5nc26mhf30grpkf8f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1097631994413:android:a32e5855bf445c52399ea4",
+        "android_client_info": {
+          "package_name": "com.breakit.driver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1097631994413-tj84dc1q8draqto5nc26mhf30grpkf8f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdtv2lxmw0LwvvnKEWLtpflturWVY15rs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1097631994413-tj84dc1q8draqto5nc26mhf30grpkf8f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

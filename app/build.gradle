@@ -1,0 +1,249 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: "androidx.navigation.safeargs.kotlin"
+apply plugin: 'com.google.gms.google-services'
+
+repositories {
+    maven {
+        url "https://jitpack.io"
+    }
+}
+
+android {
+    compileSdkVersion versions.compileSdk
+
+    dataBinding {
+        enabled = true
+        enabledForTests = true
+    }
+
+//    signingConfigs {
+//        release {
+//            storeFile rootProject.file("${keystore}")
+//            storePassword "${keystore_password}"
+//            keyAlias "${keystore_key_alias}"
+//            keyPassword "${keystore_key_password}"
+//            v1SigningEnabled true
+//            v2SigningEnabled true
+//        }
+//    }
+
+    defaultConfig {
+        applicationId "com.breakit.customer"
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+        versionCode versions.versionCode
+        versionName versions.versionName
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.breakit.customer.CustomTestRunner"
+        vectorDrawables.useSupportLibrary true
+        multiDexEnabled true
+        javaCompileOptions.annotationProcessorOptions.includeCompileClasspath = true
+        kapt {
+            arguments {
+                arg("room.schemaLocation", "$projectDir/schemas".toString())
+            }
+        }
+    }
+
+    buildTypes {
+//        release {
+//            signingConfig signingConfigs.release
+//            minifyEnabled true
+//            shrinkResources true
+//            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+//
+//            buildConfigField 'String', "CLIENT_ID", ""
+//            buildConfigField 'String', "CLIENT_SECRET", ""
+//            buildConfigField 'String', "BASE_API_URL", "https://api.breakit.com/"
+//        }
+
+        debug {
+            versionNameSuffix "-debug"
+            ext.alwaysUpdateBuildId = false
+
+            buildConfigField 'String', "APIKEY", "\"x37b723nx1xdwq\""
+            buildConfigField 'String', "BASE_API_URL", "\"http://3.6.94.159:8000/\""
+        }
+
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    sourceSets {
+        androidTest.assets.srcDirs += files("$projectDir/schemas".toString())
+    }
+
+    androidExtensions {
+        experimental = true
+    }
+
+    // Always show the result of every unit test, even if it passes.
+    testOptions.unitTests {
+        includeAndroidResources = true
+
+        all {
+            testLogging {
+                events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation project(':model')
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "androidx.appcompat:appcompat:${versions.appCompat}"
+    implementation "androidx.core:core-ktx:${versions.coreKtx}"
+    implementation "androidx.constraintlayout:constraintlayout:${versions.constraintLayout}"
+    implementation "androidx.legacy:legacy-support-v4:1.0.0"
+    implementation "androidx.annotation:annotation:${versions.annotations}"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutines}"
+    implementation "androidx.recyclerview:recyclerview:${versions.recyclerView}"
+    implementation "com.google.android.material:material:${versions.materialDesign}"
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    implementation 'com.google.android.libraries.places:places:2.3.0'
+    implementation 'com.google.firebase:firebase-messaging:20.2.4'
+    testImplementation "junit:junit:${versions.junit}"
+    androidTestImplementation "androidx.test.ext:junit:${versions.extjunit}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${versions.espresso}"
+    implementation "androidx.test.espresso:espresso-idling-resource:${versions.espresso}"
+    implementation "com.google.android.gms:play-services-cast-framework:${versions.castFramework}"
+
+    //Architecture Component
+
+    //Room DB
+    implementation "androidx.room:room-runtime:${versions.room}"
+    kapt "androidx.room:room-compiler:${versions.room}"
+    implementation "androidx.room:room-ktx:${versions.room}"
+
+    //Life Cycle
+    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
+    kapt "androidx.lifecycle:lifecycle-compiler:2.3.0-alpha05"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0-alpha05"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
+
+    //Navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:${versions.navigation}"
+    implementation "androidx.navigation:navigation-ui-ktx:${versions.navigation}"
+
+    //Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "androidx.fragment:fragment-ktx:1.3.0-alpha06"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.4"
+    implementation "androidx.preference:preference-ktx:${versions.preferenceKtx}"
+
+    // Pager
+    implementation "androidx.paging:paging-runtime-ktx:${versions.architectureComponentsPaging}"
+
+    //Dagger Dependencies
+    implementation 'com.google.dagger:dagger:2.27'
+    kapt 'com.google.dagger:dagger-compiler:2.27'
+    implementation "com.google.dagger:dagger-android-support:2.27"
+    kapt "com.google.dagger:dagger-android-processor:2.27"
+
+    // Using Dagger in androidTest and Robolectric too
+    kaptTest "com.google.dagger:dagger-compiler:2.27"
+    kaptAndroidTest "com.google.dagger:dagger-compiler:2.27"
+
+    //          -- OK HTTP --
+    implementation "com.squareup.okhttp3:logging-interceptor:${versions.okHttp}"
+    implementation "com.squareup.okhttp3:okhttp:${versions.okHttp}"
+
+    //         -- RETROFIT --
+    implementation "com.squareup.retrofit2:retrofit:${versions.retrofit}"
+    implementation "com.squareup.retrofit2:converter-moshi:2.6.2"
+    implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2"
+
+    //         ---Gson---
+    implementation 'com.google.code.gson:gson:2.8.5'
+
+    // Moshi
+    implementation "com.squareup.moshi:moshi-kotlin:${versions.moshi}"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:${versions.moshi}"
+
+    // Facebook Shimmer Effect
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+
+    // In app browser
+    implementation "androidx.browser:browser:1.2.0"
+
+    // WorkManager
+    implementation "androidx.work:work-runtime-ktx:2.4.0"
+
+    // Dependencies for local unit tests
+    testImplementation "junit:junit:4.13"
+    testImplementation "org.mockito:mockito-core:${versions.mockito}"
+    testImplementation "org.hamcrest:hamcrest-all:1.3"
+    testImplementation "androidx.arch.core:core-testing:2.1.0"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.4"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.4"
+    testImplementation "org.robolectric:robolectric:4.3"
+    testImplementation "androidx.test.espresso:espresso-core:3.2.0"
+    testImplementation "androidx.test.espresso:espresso-contrib:3.2.0"
+    testImplementation "androidx.test.espresso:espresso-intents:3.2.0"
+    testImplementation "com.google.truth:truth:1.0"
+    testImplementation 'androidx.test:core:1.2.0'
+
+    //      ----Graph Charts----
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
+
+
+    // Dependencies for Android unit tests
+    androidTestImplementation "junit:junit:4.13"
+    androidTestImplementation "com.linkedin.dexmaker:dexmaker-mockito:2.12.1"
+    androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.4"
+
+    // AndroidX Test - JVM testing
+    testImplementation "androidx.test:core-ktx:1.2.0"
+    testImplementation "androidx.test.ext:junit-ktx:1.1.1"
+    testImplementation "androidx.test:rules:1.2.0"
+    // Once https://issuetracker.google.com/127986458 is fixed this can be testImplementation
+    debugImplementation "androidx.fragment:fragment-testing:1.2.5"
+    implementation "androidx.test:core:1.2.0"
+    implementation "androidx.fragment:fragment:1.2.5"
+
+    // AndroidX Test - Instrumented testing
+    androidTestImplementation "androidx.test:core-ktx:1.2.0"
+    androidTestImplementation "androidx.test.ext:junit-ktx:1.1.1"
+    androidTestImplementation "androidx.test:rules:1.2.0"
+    androidTestImplementation "androidx.room:room-testing:2.2.5"
+    androidTestImplementation "androidx.arch.core:core-testing:2.1.0"
+    androidTestImplementation "androidx.test.espresso:espresso-core:3.2.0"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:3.2.0"
+    androidTestImplementation "androidx.test.espresso:espresso-intents:3.2.0"
+    androidTestImplementation "androidx.test.espresso.idling:idling-concurrent:3.2.0"
+    androidTestImplementation "org.robolectric:annotations:4.3"
+    implementation "androidx.test.espresso:espresso-idling-resource:3.2.0"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:${versions.mockitoKotlin}"
+    testImplementation "com.squareup.okhttp3:mockwebserver:${versions.mockwebserver}"
+
+    // Resolve conflicts between main and test APK:
+    androidTestImplementation "androidx.annotation:annotation:1.1.0"
+    androidTestImplementation "androidx.legacy:legacy-support-v4:1.0.0"
+    androidTestImplementation "androidx.recyclerview:recyclerview:1.1.0"
+    androidTestImplementation "androidx.appcompat:appcompat:1.1.0"
+    androidTestImplementation "com.google.android.material:material:1.1.0"
+
+    // Date formatter
+    implementation "com.jakewharton.threetenabp:threetenabp:${versions.threetenabp}"
+
+    // Glide
+    // https://github.com/bumptech/glide
+    implementation "com.github.bumptech.glide:glide:4.11.0"
+
+    // FCM
+
+}

@@ -1,0 +1,7 @@
+{
+  "access_token": "some token",
+  "expires_in": 123456,
+  "token_type": "Bearer",
+  "scope": "read write",
+  "refresh_token": "some other token"
+}

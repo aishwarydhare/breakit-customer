@@ -1,0 +1,3 @@
+rootProject.name='repos_customer_v2_kotlin'
+include ':app'
+include ':model'

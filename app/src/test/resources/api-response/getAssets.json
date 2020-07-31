@@ -1,0 +1,57 @@
+{
+  "meta": {
+    "status": 1000,
+    "is_error": false,
+    "message": ""
+  },
+  "data": [
+    {
+      "id": 1,
+      "name": "Asset 1",
+      "address_id": 123,
+      "customer": "john",
+      "capacity": 500,
+      "asset_type": 3,
+      "address": "Address",
+      "city": "Pune",
+      "state": "MH",
+      "tracker_device": "N/A",
+      "created_at": "2020-07-18 16:36:52",
+      "levels_info": null,
+      "asset_lat_lon": {
+        "lat": 18.5592292,
+        "lon": 73.7562846
+      },
+      "current_order_status": false,
+      "compartments": null,
+      "is_active": true,
+      "customer_asset_address": "User entered address"
+    },
+    {
+      "id": 2,
+      "name": "Datum Asset 2",
+      "address_id": 567,
+      "customer": "john",
+      "capacity": 2000,
+      "asset_type": 1,
+      "address": "Address",
+      "city": "Pune",
+      "state": "MH",
+      "tracker_device": "N/A",
+      "created_at": "2020-07-18 16:36:52",
+      "levels_info": {
+        "lvl1": 300.0,
+        "lvl2": 400.0,
+        "lvl3": null
+      },
+      "asset_lat_lon": {
+        "lat": 18.5592292,
+        "lon": 73.7562846
+      },
+      "current_order_status": false,
+      "compartments": 2,
+      "is_active": true,
+      "customer_asset_address": "User entered address"
+    }
+  ]
+}
